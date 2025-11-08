@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get the knowledge you need from the data you have.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f8f8; /* 20% grey-white */
+            color: rgba(0, 0, 0, 0.8); /* 80% grey */
+        }
+        .header-bg {
+            background-color: #ffffff; /* White header background */
+        }
+        .text-vibrant-blue {
+            color: #007bff; /* Vibrant blue */
+        }
+        .bg-vibrant-blue {
+            background-color: #007bff; /* Vibrant blue */
+        }
+        .border-vibrant-blue {
+            border-color: #007bff; /* Vibrant blue */
+        }
+        /* Custom style for serif font in header title */
+        .serif-font {
+            font-family: 'Georgia', serif; /* Using Georgia as a common serif example */
+        }
+
+        /* Resume Specific Styles for better readability */
+        .resume-section {
+            background-color: #ffffff;
+            padding: 2.5rem; /* Equivalent to py-10 px-10 */
+            border-radius: 0.75rem; /* Equivalent to rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Equivalent to shadow-md */
+            margin: 3rem auto; /* Equivalent to my-12 mx-auto */
+            max-width: 4xl; /* Limit width */
+        }
+
+        .resume-heading {
+            font-size: 2.25rem; /* Equivalent to text-4xl */
+            font-weight: 700; /* Equivalent to font-bold */
+            color: #007bff; /* Equivalent to text-vibrant-blue */
+            text-align: center;
+            margin-bottom: 2rem; /* Equivalent to mb-8 */
+        }
+
+        .resume-subheading {
+            font-size: 1.5rem; /* Equivalent to text-2xl */
+            font-weight: 600; /* Equivalent to font-semibold */
+            color: rgba(0, 0, 0, 0.8);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .resume-item {
+            margin-bottom: 1.25rem;
+        }
+
+        .resume-item ul {
+            list-style: disc;
+            padding-left: 1.25rem;
+        }
+
+        .resume-item li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="header-bg shadow-sm fixed w-full z-50 py-4 md:py-6">
+        <div class="container mx-auto px-4 flex justify-between items-center flex-col md:flex-row">
+            <h1 class="text-3xl font-bold text-vibrant-blue mb-2 md:mb-0 serif-font">
+                Troy Sanders
+            </h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#hero" class="text-lg font-medium hover:text-vibrant-blue transition-colors duration-300">Home</a></li>
+                    <li><a href="#about" class="text-lg font-medium hover:text-vibrant-blue transition-colors duration-300">About Me</a></li>
+                    <li><a href="#skills" class="text-lg font-medium hover:text-vibrant-blue transition-colors duration-300">Skills</a></li>
+                    <li><a href="#resume" class="text-lg font-medium hover:text-vibrant-blue transition-colors duration-300">Resume</a></li>
+                    <li><a href="#contact" class="text-lg font-medium hover:text-vibrant-blue transition-colors duration-300">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-24"> <section id="hero" class="relative bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20 md:py-32 flex items-center justify-center text-center rounded-b-xl shadow-lg">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
+                    Human Intelligence.
+                </h2>
+                <p class="text-lg md:text-2xl font-light max-w-3xl mx-auto">
+                    Transforming data into insights that drive meaningful, human-centered change.
+                </p>
+                <div class="mt-8">
+                    <a href="#about" class="inline-block bg-white text-vibrant-blue hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 duration-300">
+                        Learn More About Me
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-16 md:py-24 bg-white rounded-xl shadow-md mx-4 md:mx-auto my-12 max-w-4xl">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold text-vibrant-blue mb-8">About Me</h2>
+                <p class="text-lg leading-relaxed mb-6">
+                    I bring a Human-Centric perspective, dedicated to uncovering the "why" and the real-world impact behind the numbers. My mission is to use data not just for insight, but for us, to expose critical truths, and build solutions that serve people at a profound level.
+                </p>
+                <p class="text-lg leading-relaxed">
+                    My approach is defined by unwavering determination and a deep commitment to integrity. I have a natural inclination to question assumptions, ensuring that every conclusion is built on a foundation of clarity and evidence. This methodical process allows me to tackle the most complex problems and design robust solutions that are both accurate and resilient. As I complete my certification, I am eager to connect with organizations and leaders who are passionate about using data to drive meaningful, human-centered change. I am ready to bring my unique perspective and problem-solving grit to a team that believes in building a better, more equitable world.
+                </p>
+            </div>
+        </section>
+
+        <section id="skills" class="py-16 md:py-24 bg-gray-50 rounded-xl shadow-md mx-4 md:mx-auto my-12 max-w-4xl">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-vibrant-blue text-center mb-12">My Data Science Skills</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-vibrant-blue">
+                        <h3 class="text-xl font-semibold mb-3">Data Analysis & Exploration</h3>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li>Statistical Analysis</li>
+                            <li>Exploratory Data Analysis (EDA)</li>
+                            <li>Data Cleaning & Preprocessing</li>
+                            <li>Feature Engineering</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-vibrant-blue">
+                        <h3 class="text-xl font-semibold mb-3">Machine Learning & AI</h3>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li>Supervised & Unsupervised Learning</li>
+                            <li>Deep Learning (Neural Networks)</li>
+                            <li>Natural Language Processing (NLP)</li>
+                            <li>Model Evaluation & Optimization</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-vibrant-blue">
+                        <h3 class="text-xl font-semibold mb-3">Programming & Tools</h3>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li>Python (Pandas, NumPy, Scikit-learn, TensorFlow, PyTorch)</li>
+                            <li>SQL & Database Management</li>
+                            <li>Data Visualization (Matplotlib, Seaborn, Tableau)</li>
+                            <li>Cloud Platforms (AWS, GCP)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-vibrant-blue">
+                        <h3 class="text-xl font-semibold mb-3">Data Architecture & Engineering</h3>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li>Data Pipeline Design</li>
+                            <li>ETL Processes</li>
+                            <li>Data Warehousing</li>
+                            <li>Big Data Technologies (e.g., Spark)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-vibrant-blue">
+                        <h3 class="text-xl font-semibold mb-3">Ethical AI & Human Impact</h3>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li>Fairness & Bias in AI</li>
+                            <li>Interpretability & Explainability (XAI)</li>
+                            <li>Privacy-Preserving Techniques</li>
+                            <li>Responsible AI Development</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 border-l-4 border-vibrant-blue">
+                        <h3 class="text-xl font-semibold mb-3">Problem Solving & Communication</h3>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li>Critical Thinking</li>
+                            <li>Stakeholder Collaboration</li>
+                            <li>Technical Communication</li>
+                            <li>Presentation Skills</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resume" class="resume-section max-w-4xl mx-auto my-12">
+            <h2 class="resume-heading">My Resume</h2>
+
+            <div class="resume-item">
+                <h3 class="resume-subheading">Summary</h3>
+                <p class="text-gray-700">A Human-Centric Data Architect with a passion for uncovering the "why" and the real-world impact behind the numbers. Proven ability to build a foundation of trust and psychological safety, creating environments where critical qualitative data can be surfaced. Adept at leveraging both quantitative and qualitative insights to identify patterns, inform strategy, and build solutions that serve people at a profound level. A deep and unwavering commitment to integrity defines my methodical approach, allowing me to tackle the most complex problems with both clarity and compassion.</p>
+            </div>
+
+            <div class="resume-item">
+                <h3 class="resume-subheading">Skills</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
+                    <div>
+                        <strong>Data Analysis & Systems:</strong>
+                        <ul class="list-disc list-inside mt-2 ml-4">
+                            <li>Data Collection & Management: Proven ability to manage and customize POS system databases, analyze sales and inventory data, and build data tracking systems to identify trends and inform decision-making.</li>
+                            <li>Trend Analysis & Forecasting: Experience analyzing time-series data from slot machine "draw" reports to forecast workload, customer demand, and staffing needs.</li>
+                            <li>Business Intelligence & Reporting: Skill in customizing reporting tools to extract key business insights from operational data.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Human-Centered Design & Research:</strong>
+                        <ul class="list-disc list-inside mt-2 ml-4">
+                            <li>Qualitative Data Collection: A proven ability to gather and document rich, contextual data through in-depth observation and interpersonal communication, justifying conclusions with supporting evidence.</li>
+                            <li>Community-Based Systems Analysis: Experience analyzing complex social systems and building the foundational trust necessary to influence behavioral change and drive quantifiable outcomes.</li>
+                            <li>Problem-Solving & Needs Assessment: Skill in identifying service gaps and needs, and designing programs and solutions to meet those needs.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Technical Proficiency:</strong>
+                        <ul class="list-disc list-inside mt-2 ml-4">
+                            <li>Programming & Development: Experience with Python, Visual Studio Code, and HTML. Familiarity with managing code via GitHub.</li>
+                            <li>IT Infrastructure Management: Experience in managing and maintaining IT infrastructure, including POS systems, wired and wireless networks, and audio/visual equipment.</li>
+                            <li>Network Configuration & Security: Proven ability to implement network configurations that meet federal guidelines for monetary information transfer.</li>
+                            <li>Software & Hardware Support: Skilled in providing technical support and troubleshooting for various hardware and software issues.</li>
+                            <li>Graphic Design: Proficiency with Photoshop.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume-item">
+                <h3 class="resume-subheading">Experience</h3>
+                <h4 class="font-semibold text-lg mt-4">Manager | Knotty Pine Inc.</h4>
+                <p class="text-gray-600">Caliente, NV | January 2013 - Present</p>
+                <ul class="list-disc list-inside text-gray-700">
+                    <li>Analyzed slot machine "draw" reports to forecast workload, customer demand, and staffing needs, eliminating the need for paid external forecasting services.</li>
+                    <li>Designed and implemented a marker tracking system using the POS system that identified thousands of dollars in previously unpaid markers, demonstrating strong analytical and problem-solving skills.</li>
+                    <li>Managed all aspects of IT infrastructure, including network setup, troubleshooting, and security implementation to meet federal guidelines for monetary information transfer.</li>
+                    <li>Customized the POS system's reporting to meet specific business requirements, analyzing data on sales, inventory levels, and losses to identify trends and inform decision-making.</li>
+                </ul>
+
+                <h4 class="font-semibold text-lg mt-4">Public Safety Specialist | San Francisco Safety Awareness For Everyone (SAFE)</h4>
+                <p class="text-gray-600">San Francisco, CA | 2009 - 2013</p>
+                <ul class="list-disc list-inside text-gray-700">
+                    <li>Increased calls for service in Urban/Low Income communities from the lowest to the highest in the city through outreach, networking, and advocacy.</li>
+                    <li>Developed and delivered educational programs on crime prevention and community safety, based on in-depth research into community needs and feedback.</li>
+                    <li>Managed SAFE's social media presence, engaging with community members and providing direct community outreach.</li>
+                    <li>Created promotional and educational materials, including brochures, presentations, and online content, demonstrating strong written communication and information dissemination skills.</li>
+                </ul>
+
+                <h4 class="font-semibold text-lg mt-4">Qualified Behavioral Associate (Contracted) | Various Contractors</h4>
+                <p class="text-gray-600">Las Vegas, NV | May 2022 - Present</p>
+                <ul class="list-disc list-inside text-gray-700">
+                    <li>Provided in-home support and skills training to clients, adapting communication styles to meet individual needs and preferences.</li>
+                    <li>Observed and documented client behaviors, identifying patterns and trends to inform treatment plans, using a data-driven approach ("as evidenced by") to justify conclusions.</li>
+                    <li>Collaborated with therapists and supervising personnel to support clients' therapeutic goals and ensure a coordinated approach to care.</li>
+                </ul>
+            </div>
+
+            <div class="resume-item">
+                <h3 class="resume-subheading">Education</h3>
+                <p class="text-gray-700"><strong>B.A. Peace and Conflict Studies: Emphasis in Human Rights (Pending)</strong></p>
+                <p class="text-gray-600">U.C. Berkeley</p>
+                <p class="text-gray-700"><strong>A.A. Transfer Studies</strong></p>
+                <p class="text-600">San Diego Mesa Community College</p>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 md:py-24 bg-vibrant-blue text-white text-center rounded-t-xl shadow-lg">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold mb-8">Let's Connect</h2>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8">
+                    I'm eager to connect with organizations and leaders passionate about using data to drive meaningful, human-centered change.
+                </p>
+                <a href="mailto:triskil79@gmail.com" class="inline-block bg-white text-vibrant-blue hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 duration-300">
+                    Email Me
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8 text-center">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2025 Troy Sanders. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
