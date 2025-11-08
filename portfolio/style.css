@@ -1,9 +1,8 @@
 /* Core Global Styles */
 body {
     font-family: 'Inter', sans-serif;
-    /* Darker grey background */
-    background-color: #d4d4d4; 
-    color: rgba(0, 0, 0, 0.8); /* 80% grey for text */
+    background-color: #d4d4d4; /* Darker grey background */
+    color: rgba(0, 0, 0, 0.8); /* 80% grey */
 }
 
 /* Color Variables */
@@ -80,7 +79,6 @@ body {
 
 /* Resume Specific Styles (formerly in the HTML <style> block) */
 .resume-heading {
-    /* Note: The resume heading is now styled directly in the HTML with utility classes for left alignment, overriding this center-aligned style. */
     font-size: 2.25rem; /* text-4xl */
     font-weight: 700; /* font-bold */
     color: #2563eb; /* text-vibrant-blue */
