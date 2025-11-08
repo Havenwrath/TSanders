@@ -10,26 +10,26 @@
     </head>
 <body class="antialiased">
 
-    <header class="header-bg shadow-sm fixed w-full z-50 py-4 md:py-6">
-        <div class="container mx-auto px-4 flex justify-between items-center flex-col md:flex-row">
-            <h1 class="text-3xl font-bold text-vibrant-blue mb-2 md:mb-0 serif-font">
+    <header class="fixed left-0 top-0 h-full w-64 bg-vibrant-accent text-white shadow-lg z-50 p-6">
+        <div class="flex flex-col h-full">
+            <h1 class="text-2xl font-bold mb-8 serif-font">
                 Troy Sanders
             </h1>
-            <nav>
-                <ul class="flex space-x-6">
-                    <li><a href="#hero" class="nav-link">Home</a></li>
-                    <li><a href="#about" class="nav-link">About Me</a></li>
-                    <li><a href="#skills" class="nav-link">Skills</a></li>
-                    <li><a href="portfolio/index.html" class="nav-link">Portfolio</a></li>
-                    <li><a href="#resume" class="nav-link">Resume</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
+            <nav class="flex-1">
+                <ul class="space-y-4">
+                    <li><a href="#hero" class="nav-link-sidebar">Home</a></li>
+                    <li><a href="#about" class="nav-link-sidebar">About Me</a></li>
+                    <li><a href="#skills" class="nav-link-sidebar">Skills</a></li>
+                    <li><a href="portfolio/index.html" class="nav-link-sidebar">Portfolio</a></li>
+                    <li><a href="#resume" class="nav-link-sidebar">Resume</a></li>
+                    <li><a href="#contact" class="nav-link-sidebar">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="pt-24">
-        <section id="hero" class="relative bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20 md:py-32 flex items-center justify-center text-center rounded-b-xl shadow-lg">
+    <main class="ml-64">
+        <section id="hero" class="relative bg-gradient-to-r from-vibrant-accent to-secondary-accent text-white py-20 md:py-32 flex items-center justify-center text-center rounded-b-xl shadow-lg">
             <div class="container mx-auto px-4">
                 <h2 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
                     Human Intelligence. Data Architecture.
@@ -38,7 +38,7 @@
                     Transforming data into insights that drive meaningful, human-centered change.
                 </p>
                 <div class="mt-8">
-                    <a href="#about" class="inline-block bg-white text-vibrant-blue hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 duration-300">
+                    <a href="#about" class="inline-block bg-white text-vibrant-accent hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 duration-300">
                         Learn More About Me
                     </a>
                 </div>
@@ -59,8 +59,9 @@
 
         <section id="skills" class="page-section bg-gray-50 max-w-4xl">
             <div class="container mx-auto px-4">
-                <h2 class="page-heading">My Core Competencies</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <h2 class="page-heading">Most Relevant Skillsets</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
 
                     <div class="skill-card">
                         <h3 class="skill-title">Data Science & ML Engineering</h3>
@@ -80,7 +81,30 @@
                             <li>Networking & Security (TCP/IP, **FCC Compliance**)</li>
                         </ul>
                     </div>
+                    
+                    <div class="skill-card">
+                        <h3 class="skill-title">Strategic Problem Solving</h3>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li>**Creative Problem Solving** & Critical Thinking</li>
+                            <li>Teamwork & Project Management</li>
+                            <li>Adaptability & Prioritization of Competing Projects</li>
+                            <li>Unwavering **Integrity** (Human Rights Focus)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card">
+                        <h3 class="skill-title">Communication & Stakeholder Alignment</h3>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li>Excellent Written & Verbal Communication</li>
+                            <li>**Translating Technical Concepts** to Non-Tech Users</li>
+                            <li>Public Presentation & Staff Training</li>
+                            <li>High Customer Service & Stakeholder Collaboration</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h2 class="page-heading pt-8 border-t border-gray-300">Added Experience (Operational & Development)</h2>
 
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="skill-card">
                         <h3 class="skill-title">Technical Support & Operations</h3>
                         <ul class="list-disc list-inside text-gray-700">
@@ -99,31 +123,13 @@
                             <li>Office Suites & Webpage Management</li>
                         </ul>
                     </div>
-
-                    <div class="skill-card">
-                        <h3 class="skill-title">Professional Communication</h3>
-                        <ul class="list-disc list-inside text-gray-700">
-                            <li>Excellent Written & Verbal Communication</li>
-                            <li>**Translating Technical Concepts** to Non-Tech Users</li>
-                            <li>Public Presentation & Staff Training</li>
-                            <li>High Customer Service & Stakeholder Collaboration</li>
-                        </ul>
-                    </div>
-                    <div class="skill-card">
-                        <h3 class="skill-title">Strategic & Adaptive Leadership</h3>
-                        <ul class="list-disc list-inside text-gray-700">
-                            <li>**Creative Problem Solving** & Critical Thinking</li>
-                            <li>Teamwork & Project Management</li>
-                            <li>Adaptability & Prioritization of Competing Projects</li>
-                            <li>Unwavering **Integrity** (Human Rights Focus)</li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </section>
 
         <section id="resume" class="page-section bg-white max-w-4xl">
-            <h2 class="resume-heading">My Resume</h2>
+            <h2 class="text-3xl font-bold text-vibrant-blue mb-8 text-left border-b pb-2">Troy Sanders Resume</h2>
+
             <div class="resume-item">
                 <h3 class="resume-subheading">Summary</h3>
                 <p class="text-gray-700">A Human-Centric Data Architect with a passion for uncovering the "why" and the real-world impact behind the numbers. Proven ability to build a foundation of trust and psychological safety, creating environments where critical qualitative data can be surfaced. Adept at leveraging both quantitative and qualitative insights to identify patterns, inform strategy, and build solutions that serve people at a profound level. A deep and unwavering commitment to integrity defines my methodical approach, allowing me to tackle the most complex problems with both clarity and compassion.</p>
@@ -194,13 +200,13 @@
             </div>
         </section>
 
-        <section id="contact" class="py-16 md:py-24 bg-vibrant-blue text-white text-center rounded-t-xl shadow-lg">
+        <section id="contact" class="py-16 md:py-24 bg-secondary-accent text-white text-center rounded-t-xl shadow-lg">
             <div class="container mx-auto px-4">
                 <h2 class="text-4xl font-bold mb-8">Let's Connect</h2>
                 <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8">
                     I'm eager to connect with organizations and leaders passionate about using data to drive meaningful, human-centered change.
                 </p>
-                <a href="mailto:triskil79@gmail.com" class="inline-block bg-white text-vibrant-blue hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 duration-300">
+                <a href="mailto:triskil79@gmail.com" class="inline-block bg-white text-vibrant-accent hover:bg-gray-100 font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 duration-300">
                     Email Me
                 </a>
             </div>
