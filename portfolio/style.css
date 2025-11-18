@@ -1,0 +1,104 @@
+/* Core Global Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #d4d4d4; /* Darker grey background */
+    color: rgba(0, 0, 0, 0.8); /* 80% grey */
+}
+
+/* Color Variables */
+.header-bg {
+    background-color: #ffffff; /* White header background */
+}
+.text-vibrant-blue {
+    color: #2563eb; /* Sophisticated blue */
+}
+.bg-vibrant-blue {
+    background-color: #2563eb; /* Sophisticated blue */
+}
+.border-vibrant-blue {
+    border-color: #2563eb; /* Sophisticated blue */
+}
+
+/* Custom style for serif font in header title */
+.serif-font {
+    font-family: 'Georgia', serif; /* Using Georgia as a common serif example */
+}
+
+/* Reusable Section Styles */
+.page-section {
+    padding: 4rem 1rem; /* Equivalent to py-16 px-4 */
+    margin: 3rem auto; /* Equivalent to my-12 mx-auto */
+    border-radius: 0.75rem; /* Equivalent to rounded-xl */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Equivalent to shadow-md */
+    max-width: 90%;
+}
+@media (min-width: 768px) {
+    .page-section {
+        max-width: 56rem; /* Equivalent to max-w-4xl */
+    }
+}
+
+.page-heading {
+    font-size: 2.25rem; /* text-4xl */
+    font-weight: 700; /* font-bold */
+    color: #2563eb; /* text-vibrant-blue */
+    text-align: center;
+    margin-bottom: 3rem; /* mb-12 */
+}
+
+/* Navigation Link Styles */
+.nav-link {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 500; /* font-medium */
+    color: rgba(0, 0, 0, 0.8);
+    transition: color 0.3s ease;
+}
+.nav-link:hover {
+    color: #2563eb; /* hover:text-vibrant-blue */
+}
+
+/* Skill Card Styles */
+.skill-card {
+    background-color: #ffffff;
+    padding: 1.5rem; /* p-6 */
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* shadow-md */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    border-left: 4px solid #2563eb; /* border-l-4 border-vibrant-blue */
+}
+.skill-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* hover:shadow-xl */
+    transform: translateY(-2px);
+}
+.skill-title {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 600; /* font-semibold */
+    margin-bottom: 0.75rem; /* mb-3 */
+    color: rgba(0, 0, 0, 0.8);
+}
+
+/* Resume Specific Styles (formerly in the HTML <style> block) */
+.resume-heading {
+    font-size: 2.25rem; /* text-4xl */
+    font-weight: 700; /* font-bold */
+    color: #2563eb; /* text-vibrant-blue */
+    text-align: center;
+    margin-bottom: 2rem; /* mb-8 */
+}
+.resume-subheading {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: 600; /* font-semibold */
+    color: rgba(0, 0, 0, 0.8);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+}
+.resume-item {
+    margin-bottom: 1.25rem;
+}
+.resume-item ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+}
+.resume-item li {
+    margin-bottom: 0.5rem;
+}

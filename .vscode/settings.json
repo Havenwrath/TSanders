@@ -1,0 +1,14 @@
+{
+    "liveServer.settings.port": 5500,
+    "liveServer.settings.root": "/",
+    "liveServer.settings.host": "localhost",
+    "liveServer.settings.NoBrowser": false,
+    "liveServer.settings.CustomBrowser": "chrome",
+    "liveServer.settings.AdvanceCustomBrowserCmdLine": "google-chrome",
+    "liveServer.settings.wait": 1000,
+    "files.associations": {
+        "*.html": "html"
+    },
+    "html.autoClosingTags": true,
+    "html.format.indentInnerHtml": true
+}
