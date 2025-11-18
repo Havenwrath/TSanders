@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Resume | Human-Centric Data Architect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2e2e2e;
+            --accent-color: #505050;
+            --text-dark: #2e2e2e;
+            --text-light: #6b6b6b;
+            --bg-light: #f5f5f5;
+            --white: #ffffff;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #3d3d3d 0%, #2e2e2e 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        /* Header Section */
+        .header {
+            background: #505050;
+            color: var(--white);
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: #bdc3c7;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .contact-info a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 8px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            padding: 8px 18px;
+            background: var(--bg-light);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            background: var(--accent-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Download Button */
+        .download-btn {
+            padding: 10px 24px;
+            background: var(--accent-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(80, 80, 80, 0.3);
+            font-size: 0.9rem;
+        }
+
+        .download-btn:hover {
+            background: #3d3d3d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(80, 80, 80, 0.4);
+        }
+        .content {
+            padding: 40px 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: clamp(1.3rem, 3vw, 1.6rem);
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--accent-color);
+            font-weight: 700;
+        }
+
+        /* Professional Summary */
+        .summary {
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .skill-category {
+            background: var(--bg-light);
+            padding: 25px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .skill-category h3 {
+            color: var(--accent-color);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .skill-category li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .skill-category li:before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Experience Items */
+        .experience-item {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .experience-item:hover {
+            background: var(--bg-light);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .company {
+            font-size: 1rem;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .experience-item ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .experience-item li {
+            margin-bottom: 8px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Education */
+        .education-item {
+            background: var(--bg-light);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .education-item h3 {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .education-item p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Core Values */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .value-item {
+            background: #505050;
+            color: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .value-item:hover {
+            transform: scale(1.05);
+        }
+
+        .value-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .value-item p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 20px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header-left {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            .header-right {
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header-contact {
+                width: 100%;
+            }
+
+            .nav-container {
+                padding: 12px 20px;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="header-info">
+                    <h1>Troy Sanders</h1>
+                    <p class="subtitle">Aspiring AI Engineer & Data Scientist</p>
+                </div>
+                <div class="header-contact contact-info">
+                    <a href="mailto:triskil79@gmail.com" data-tooltip="triskil79@gmail.com">Email</a>
+                    <a href="tel:+17252321847" data-tooltip="725-232-1847">Phone</a>
+                    <a href="https://www.linkedin.com/in/troyesanders" target="_blank">LinkedIn</a>
+                    <a href="files/TsandersRes.pdf" class="download-btn" download>PDF</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-container">
+            <div class="nav-links">
+                <a href="#summary">Summary</a>
+                <a href="#values">Values</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education</a>
+                <a href="#impact">Impact</a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Professional Summary -->
+            <section class="section" id="summary">
+                <h2 class="section-title">Professional Summary</h2>
+                <div class="summary">
+                    <p>Aspiring AI Engineer and Data Scientist dedicated to uncovering the "why" behind data to drive meaningful, ethical change. Specializing in AI/ML applications for social impact, particularly in anti-human trafficking, human rights advocacy, and ethical private sector development. Proven track record of building data systems from the ground up, with expertise in forecasting, automation, and translating complex technical concepts for diverse stakeholders. Combines emerging data science capabilities with robust IT infrastructure management and a commitment to justice-driven innovation.</p>
+                </div>
+            </section>
+
+            <!-- Core Values & Mission -->
+            <section class="section" id="values">
+                <h2 class="section-title">Core Values & Mission</h2>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <h3>Human-Centered</h3>
+                        <p>Data for justice, progress, and human impact</p>
+                    </div>
+                    <div class="value-item">
+                        <h3>Critical Thinking</h3>
+                        <p>Questioning assumptions, ensuring evidence-based conclusions</p>
+                    </div>
+                    <div class="value-item">
+                        <h3>Integrity</h3>
+                        <p>Unwavering commitment to ethical principles</p>
+                    </div>
+                    <div class="value-item">
+                        <h3>Innovation</h3>
+                        <p>Independent problem-solver and system innovator</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Skills -->
+            <section class="section" id="skills">
+                <h2 class="section-title">Technical Competencies</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Data Science & AI/ML</h3>
+                        <ul>
+                            <li>Python (Pandas, NumPy, Scikit-learn)</li>
+                            <li>SQL (PostgreSQL, PySpark)</li>
+                            <li>Deep Learning & Neural Networks</li>
+                            <li>LLMs & NLP</li>
+                            <li>Classification & Regression</li>
+                            <li>Time-Series Analysis & Forecasting</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Data Architecture & MLOps</h3>
+                        <ul>
+                            <li>AI Automation</li>
+                            <li>APIs & WebHooks</li>
+                            <li>Data Pipelines</li>
+                            <li>Docker</li>
+                            <li>Data Collection & Management</li>
+                            <li>Trend Analysis</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>IT Infrastructure</h3>
+                        <ul>
+                            <li>POS Systems (ePOS NOW! - Advanced)</li>
+                            <li>Network Security & FCC Compliance</li>
+                            <li>Windows 10/11 & Kubuntu Linux</li>
+                            <li>TCP/IP, Static IPs</li>
+                            <li>Remote Support (TeamViewer)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Web Development & Design</h3>
+                        <ul>
+                            <li>HTML & CSS</li>
+                            <li>Flask & FastAPI</li>
+                            <li>Photoshop</li>
+                            <li>Microsoft Office Suite</li>
+                            <li>Responsive Web Design</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Professional Experience -->
+            <section class="section" id="experience">
+                <h2 class="section-title">Professional Experience</h2>
+                
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">Manager</div>
+                            <div class="company">Knotty Pine Inc.</div>
+                        </div>
+                        <div class="date">January 2013 - Present</div>
+                    </div>
+                    <ul>
+                        <li><strong>Data Forecasting & Analytics:</strong> Analyzed time-series data from machine reports to forecast workload, customer demand, and staffing needs, eliminating costly external forecasting services and improving operational efficiency by 30%</li>
+                        <li><strong>Custom System Implementation:</strong> Designed and implemented a comprehensive data tracking system within the POS environment, identifying thousands of dollars in previously unpaid markers and improving revenue tracking accuracy</li>
+                        <li><strong>IT Infrastructure Management:</strong> Managed and secured complete IT infrastructure including network configuration, federal compliance for monetary information transfer, and first-level technical support for all systems</li>
+                        <li><strong>Regulatory Compliance:</strong> Ensured adherence to FCC compliance standards and data security protocols for sensitive financial transactions</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">Qualified Behavioral Associate (Contracted)</div>
+                            <div class="company">Various Organizations</div>
+                        </div>
+                        <div class="date">May 2022 - Present</div>
+                    </div>
+                    <ul>
+                        <li><strong>Behavioral Data Analysis:</strong> Documented and analyzed client behavioral patterns using evidence-based methodologies to inform treatment planning</li>
+                        <li><strong>Pattern Recognition:</strong> Identified behavioral trends through systematic data collection and analysis, contributing to improved client outcomes</li>
+                        <li><strong>Evidence-Based Approach:</strong> Applied methodical analytical techniques to support clinical decision-making</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="job-title">Public Safety Specialist</div>
+                            <div class="company">San Francisco Safety Awareness For Everyone (SAFE)</div>
+                        </div>
+                        <div class="date">2009 - 2013</div>
+                    </div>
+                    <ul>
+                        <li><strong>Community Data-Driven Outreach:</strong> Utilized community-based systems analysis to increase calls for service in low-income communities from the lowest to the highest citywide—a 150%+ improvement in community engagement</li>
+                        <li><strong>Stakeholder Engagement:</strong> Represented organization publicly among S.F.P.D. command staff and facilitated programs in partnership with community and governmental leaders</li>
+                        <li><strong>Data-Informed Strategy:</strong> Applied analytical approaches to identify underserved communities and develop targeted intervention strategies</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section class="section" id="education">
+                <h2 class="section-title">Education & Certifications</h2>
+                <div class="education-item">
+                    <h3>B.A. Peace and Conflict Studies</h3>
+                    <p><strong>University of California, Berkeley</strong> | Emphasis in Human Rights | Pending</p>
+                </div>
+                <div class="education-item">
+                    <h3>A.A. Transfer Studies</h3>
+                    <p><strong>San Diego Mesa Community College</strong></p>
+                </div>
+                <div class="education-item">
+                    <h3>AI/ML Certification</h3>
+                    <p><strong>Currently Completing</strong> | Advanced focus on practical applications and ethical AI development</p>
+                </div>
+            </section>
+
+            <!-- Areas of Impact -->
+            <section class="section" id="impact">
+                <h2 class="section-title">Areas of Impact & Interest</h2>
+                <div class="summary">
+                    <p><strong>Social Justice Applications:</strong> Anti-human trafficking initiatives, human rights advocacy, community safety enhancement, and data-driven policy development</p>
+                    <p style="margin-top: 15px;"><strong>Ethical Technology:</strong> Private sector AI development with emphasis on transparency, accountability, and human-centered design principles</p>
+                    <p style="margin-top: 15px;"><strong>Systems Innovation:</strong> Building scalable data infrastructure that serves both business objectives and social good</p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 | Professional Resume | Designed for Impact</p>
+        </footer>
+    </div>
+</body>
+</html>
