@@ -161,6 +161,43 @@
                 }
             }
 
+            /* Mobile Navigation Adjustments */
+            @media (max-width: 768px),
+            (max-aspect-ratio: 9/19) {
+                .nav-container {
+                    padding: 8px 10px;
+                }
+
+                .nav-links {
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 6px;
+                    overflow-x: visible;
+                    /* Disable scroll on mobile to see all buttons */
+                }
+
+                .nav-links a {
+                    padding: 4px 10px;
+                    font-size: 0.7rem;
+                    flex: 0 0 auto;
+                    /* Allow buttons to size naturally but wrap */
+                    margin-bottom: 2px;
+                }
+
+                .nav-divider {
+                    display: none;
+                    /* Hide divider to save space */
+                }
+
+                .header h1 {
+                    font-size: 1.8rem;
+                }
+
+                .header .subtitle {
+                    font-size: 0.8rem;
+                }
+            }
+
             .skill-category {
                 background: var(--bg-light);
                 padding: 15px;
@@ -291,21 +328,23 @@
                     <div class="summary">
                         <p>"I am a Data Architect and AI/ML Engineer driven to uncover the 'why' behind complex systems
                             through rigorous critical inquiry. I build by integrating a broad knowledge base with
-                            analytical creativity and deep comprehension. I challenge assumptions by avoiding them,
-                            identify root causes by exploring them, and seek a plurality of perspectives to ensure
+                            analytical insight, creativity, and interdisciplinary comprehension and application. I
+                            challenge assumptions by seeking the "why"
+                            behind the apparent in search of root causes. I seek a plurality of perspectives, and
+                            solicit buy-in and investment to ensure
                             outcomes
                             that respect the interdependent needs of all stakeholders. My approach prioritizes
                             exploration,
                             communication, invention, and integrity while maintaining the sanctity of the data. I
-                            champion
-                            the value of authenticity, and foster individual investment in collaborative solutions built
+                            champion authenticity, and foster individual investment in collaborative solutions built
                             on
-                            a foundation of transparency and shared outcomes. By treating every data point as an
-                            opportunity
-                            to create knowledge, and a tool for service, I build resilient systems that improve lives
-                            through
-                            multi-faceted insight."
-                            .</p>
+                            a foundation of transparency, collaboration, and measurable results. In seeking a more
+                            multi-faceted insight into complex systems, I treat every data point as part of a larger
+                            picture,
+                            each one an opportunity
+                            to create knowledge, and a tool for service. I build resilient systems that focus on people
+                            and outcomes"
+                        </p>
                     </div>
                 </section>
 
