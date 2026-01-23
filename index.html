@@ -14,11 +14,11 @@
             }
 
             :root {
-                --primary-color: #f1f1f1;
-                --accent-color: #505050;
-                --text-dark: #2e2e2e;
-                --text-light: #6b6b6b;
-                --bg-light: #f5f5f5;
+                --primary-color: #e5e5e5;
+                --accent-color: #161616f3;
+                --text-dark: #171717;
+                --text-light: #525252;
+                --bg-light: #fafafa;
                 --white: #ffffff;
                 --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             }
@@ -27,7 +27,7 @@
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
                 line-height: 1.6;
                 color: var(--text-dark);
-                background: linear-gradient(135deg, #3d3d3d 0%, #2e2e2e 100%);
+                background: linear-gradient(135deg, #404040 0%, #171717 100%);
                 min-height: 100vh;
                 padding: 20px;
             }
@@ -41,7 +41,7 @@
             }
 
             .header {
-                background: #505050;
+                background: var(--accent-color);
                 color: var(--white);
                 padding: 25px 30px 15px 30px;
                 text-align: center;
@@ -71,7 +71,7 @@
                 top: 0;
                 z-index: 1000;
                 padding: 10px 15px;
-                background: #505050;
+                background: var(--accent-color);
                 border-bottom: 1px solid rgba(255, 255, 255, 0.05);
                 box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.3);
             }
@@ -199,18 +199,25 @@
             }
 
             .skill-category {
-                background: var(--bg-light);
+                background: var(--accent-color);
+                color: var(--bg-light);
                 padding: 15px;
                 border-radius: 8px;
                 height: 100%;
-                border: 1px solid #e0e0e0;
+                border: 1px solid var(--text-light);
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+
+            .skill-category:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             }
 
             .skill-category h3 {
-                color: var(--accent-color);
+                color: var(--white);
                 margin-bottom: 10px;
                 font-size: 0.95rem;
-                border-bottom: 1px solid #ddd;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.2);
                 padding-bottom: 5px;
             }
 
@@ -223,14 +230,14 @@
                 padding: 3px 0;
                 padding-left: 12px;
                 position: relative;
-                color: var(--text-light);
+                color: var(--primary-color);
             }
 
             .skill-category li:before {
                 content: "▹";
                 position: absolute;
                 left: 0;
-                color: var(--accent-color);
+                color: var(--primary-color);
                 font-weight: bold;
             }
 
@@ -329,21 +336,15 @@
                         <p>"I am a Data Architect and AI/ML Engineer driven to uncover the 'why' behind complex systems
                             through rigorous critical inquiry. I build by integrating a broad knowledge base with
                             analytical insight, creativity, and interdisciplinary comprehension and application. I
-                            challenge assumptions by seeking the "why"
-                            behind the apparent in search of root causes. I seek a plurality of perspectives, and
-                            solicit buy-in and investment to ensure
-                            outcomes
+                            challenge assumptions by seeking the "why" behind the apparent in search of root causes.
+                            I seek a plurality of perspectives, and solicit buy-in and investment to ensure outcomes
                             that respect the interdependent needs of all stakeholders. My approach prioritizes
-                            exploration,
-                            communication, invention, and integrity while maintaining the sanctity of the data. I
-                            champion authenticity, and foster individual investment in collaborative solutions built
-                            on
-                            a foundation of transparency, collaboration, and measurable results. In seeking a more
-                            multi-faceted insight into complex systems, I treat every data point as part of a larger
-                            picture,
-                            each one an opportunity
-                            to create knowledge, and a tool for service. I build resilient systems that focus on people
-                            and outcomes"
+                            exploration, communication, invention, and integrity while maintaining the sanctity of the
+                            data. I champion authenticity, and foster individual investment in collaborative solutions
+                            built on a foundation of transparency, collaboration, and measurable results. In seeking a
+                            more multi-faceted insight into complex systems, I treat every data point as part of a
+                            larger picture, each one an opportunity to create knowledge, and a tool for service.
+                            I build resilient systems that focus on people and outcomes."
                         </p>
                     </div>
                 </section>
