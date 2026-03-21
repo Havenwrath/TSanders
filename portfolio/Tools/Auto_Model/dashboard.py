@@ -79,42 +79,58 @@ if 'df' in st.session_state:
         target_col = st.selectbox("Select Target Column", df_clean.columns)
     with col2:
         task_type = st.radio("Select Task Type", ["regression", "classification"])
-    
-    if st.button("GO: Proceed to Data Splitting", type="primary" if st.session_state.step == 0 else "secondary"):
-        st.session_state.df_clean = df_clean
-        st.session_state.target_col = target_col
-        st.session_state.task_type = task_type
-        st.session_state.step = max(st.session_state.step, 1)
-        st.rerun()
 
-# --- STEP 2: Data Splitting ---
-if st.session_state.step >= 1:
+    st.subheader("📊 Feature Significance")
+    try:
+        from sklearn.feature_selection import f_classif, f_regression
+        import numpy as np
+        
+        df_encoded = df_clean.copy()
+        for c in df_encoded.columns:
+            if df_encoded[c].dtype == 'object':
+                df_encoded[c] = df_encoded[c].astype('category').cat.codes
+                
+        X_sig = df_encoded.drop(columns=[target_col]).fillna(0)
+        y_sig = df_encoded[target_col].fillna(0)
+        
+        if task_type == 'classification':
+            F, pval = f_classif(X_sig, y_sig)
+        else:
+            F, pval = f_regression(X_sig, y_sig)
+            
+        sig_df = pd.DataFrame({
+            "Feature": X_sig.columns,
+            "F-Value": F,
+            "p-Value": pval
+        }).sort_values('F-Value', ascending=False)
+        
+        st.dataframe(sig_df.style.background_gradient(subset=['F-Value'], cmap='viridis'))
+    except Exception as e:
+        st.warning(f"Could not compute feature significance: {e}")
+
     st.markdown("---")
-    st.header("Step 2: Data Splitting")
+    st.header("Step 2: Data Splitting Options")
     
-    col1, col2 = st.columns(2)
-    with col1:
+    col3, col4 = st.columns(2)
+    with col3:
         test_size = st.slider("Test Size Proportion", 0.05, 0.5, 0.2, 0.05)
-    with col2:
+    with col4:
         valid_size = st.slider("Validation Size Proportion", 0.05, 0.5, 0.2, 0.05)
         
     outputs_dir = os.path.join(os.path.dirname(__file__), 'temp_splits')
     os.makedirs(outputs_dir, exist_ok=True)
         
-    if st.button("GO: Execute Split", type="primary" if st.session_state.step == 1 else "secondary", key="split_go"):
+    if st.button("GO: Compute Splits & Select Models", type="primary" if st.session_state.step <= 1 else "secondary", key="split_go"):
+        st.session_state.df_clean = df_clean
+        st.session_state.target_col = target_col
+        st.session_state.task_type = task_type
         with st.spinner("Splitting data..."):
             try:
                 train_p, test_p, valid_p, train_l, test_l, valid_l = split_and_save(
-                    st.session_state.df_clean, 
-                    st.session_state.target_col, 
-                    test_size, valid_size, 
-                    outputs_dir, 
-                    st.session_state.task_type
+                    df_clean, target_col, test_size, valid_size, outputs_dir, task_type
                 )
                 st.session_state.data_files = {
-                    'train': train_p,
-                    'test': test_p,
-                    'valid': valid_p
+                    'train': train_p, 'test': test_p, 'valid': valid_p
                 }
                 st.session_state.split_info = {
                     'train_len': train_l, 'test_len': test_l, 'valid_len': valid_l
