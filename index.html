@@ -149,7 +149,7 @@
                 margin-bottom: 6px;
             }
 
-            .summary, .project-item, .education-item {
+            .project-item, .education-item {
                 background: var(--white);
                 border: 1px solid rgba(0,0,0,0.06);
                 box-shadow: 0 4px 15px rgba(0,0,0,0.04);
@@ -157,15 +157,17 @@
                 transition: transform 0.2s ease, box-shadow 0.2s ease;
             }
 
-            .summary:hover, .project-item:hover, .education-item:hover {
+            .project-item:hover, .education-item:hover {
                 transform: translateY(-4px);
                 box-shadow: 0 12px 24px rgba(0,0,0,0.08);
             }
 
             .summary {
-                padding: 20px;
+                padding: 5px 0 20px 0;
                 font-size: 0.95rem;
                 line-height: 1.7;
+                color: var(--text-dark);
+                font-weight: 500;
             }
 
             .project-item {
