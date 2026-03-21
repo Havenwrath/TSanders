@@ -41,107 +41,133 @@ st.title("🚀 Auto-Model Evaluator Dashboard")
 if 'step' not in st.session_state:
     st.session_state.step = 0
 
-# --- STEP 1: Upload Data ---
-st.header("Step 1: Upload & Clean Dataset")
-uploaded_file = st.file_uploader("Drop a .csv, .xlsx, or .json file here", type=['csv', 'xlsx', 'json'])
+main_col1, main_col2 = st.columns([1, 1], gap="large")
 
-if uploaded_file is not None:
-    if 'df' not in st.session_state or st.session_state.get('curr_file') != uploaded_file.name:
-        try:
-            if uploaded_file.name.endswith('.csv'):
-                st.session_state.df = pd.read_csv(uploaded_file)
-            elif uploaded_file.name.endswith('.xlsx'):
-                st.session_state.df = pd.read_excel(uploaded_file)
-            elif uploaded_file.name.endswith('.json'):
-                st.session_state.df = pd.read_json(uploaded_file)
-            st.session_state.curr_file = uploaded_file.name
-            st.session_state.step = 0 # reset steps on new upload
-        except Exception as e:
-            st.error(f"Error reading file: {e}")
-            
-if 'df' in st.session_state:
-    df = st.session_state.df
-    st.write(f"**Data Preview ({df.shape[0]} rows, {df.shape[1]} columns):**")
-    st.dataframe(df.head())
-    
-    st.subheader("Data Alterations")
-    cols_to_drop = st.multiselect("Select columns to drop (optional)", df.columns)
-    
-    # Working copy
-    df_clean = df.drop(columns=cols_to_drop) if cols_to_drop else df
-    
-    if cols_to_drop:
-        st.write("Preview after dropping columns:")
-        st.dataframe(df_clean.head())
-    
-    col1, col2 = st.columns(2)
-    with col1:
-        target_col = st.selectbox("Select Target Column", df_clean.columns)
-    with col2:
-        task_type = st.radio("Select Task Type", ["regression", "classification"])
+with main_col1:
+    st.header("Step 1: Upload & Clean")
+    uploaded_file = st.file_uploader("Drop a .csv, .xlsx, or .json file here", type=['csv', 'xlsx', 'json'])
 
-    st.subheader("📊 Feature Significance")
-    try:
-        from sklearn.feature_selection import f_classif, f_regression
-        import numpy as np
-        
-        df_encoded = df_clean.copy()
-        for c in df_encoded.columns:
-            if df_encoded[c].dtype == 'object':
-                df_encoded[c] = df_encoded[c].astype('category').cat.codes
-                
-        X_sig = df_encoded.drop(columns=[target_col]).fillna(0)
-        y_sig = df_encoded[target_col].fillna(0)
-        
-        if task_type == 'classification':
-            F, pval = f_classif(X_sig, y_sig)
-        else:
-            F, pval = f_regression(X_sig, y_sig)
-            
-        sig_df = pd.DataFrame({
-            "Feature": X_sig.columns,
-            "F-Value": F,
-            "p-Value": pval
-        }).sort_values('F-Value', ascending=False)
-        
-        st.dataframe(sig_df.style.background_gradient(subset=['F-Value'], cmap='viridis'))
-    except Exception as e:
-        st.warning(f"Could not compute feature significance: {e}")
-
-    st.markdown("---")
-    st.header("Step 2: Data Splitting Options")
-    
-    col3, col4 = st.columns(2)
-    with col3:
-        test_size = st.slider("Test Size Proportion", 0.05, 0.5, 0.2, 0.05)
-    with col4:
-        valid_size = st.slider("Validation Size Proportion", 0.05, 0.5, 0.2, 0.05)
-        
-    outputs_dir = os.path.join(os.path.dirname(__file__), 'temp_splits')
-    os.makedirs(outputs_dir, exist_ok=True)
-        
-    if st.button("GO: Compute Splits & Select Models", type="primary" if st.session_state.step <= 1 else "secondary", key="split_go"):
-        st.session_state.df_clean = df_clean
-        st.session_state.target_col = target_col
-        st.session_state.task_type = task_type
-        with st.spinner("Splitting data..."):
+    if uploaded_file is not None:
+        if 'df' not in st.session_state or st.session_state.get('curr_file') != uploaded_file.name:
             try:
-                train_p, test_p, valid_p, train_l, test_l, valid_l = split_and_save(
-                    df_clean, target_col, test_size, valid_size, outputs_dir, task_type
-                )
-                st.session_state.data_files = {
-                    'train': train_p, 'test': test_p, 'valid': valid_p
-                }
-                st.session_state.split_info = {
-                    'train_len': train_l, 'test_len': test_l, 'valid_len': valid_l
-                }
-                st.session_state.step = max(st.session_state.step, 2)
-                st.rerun()
+                if uploaded_file.name.endswith('.csv'):
+                    st.session_state.df = pd.read_csv(uploaded_file)
+                elif uploaded_file.name.endswith('.xlsx'):
+                    st.session_state.df = pd.read_excel(uploaded_file)
+                elif uploaded_file.name.endswith('.json'):
+                    st.session_state.df = pd.read_json(uploaded_file)
+                st.session_state.curr_file = uploaded_file.name
+                st.session_state.step = 0 # reset steps on new upload
             except Exception as e:
-                st.error(f"Error during splitting: {e}")
+                st.error(f"Error reading file: {e}")
+    else:
+        # Provide a default fallback dataset if none uploaded
+        if 'df' not in st.session_state or st.session_state.get('curr_file') != 'default_train':
+            try:
+                default_path = os.path.join(os.path.dirname(__file__), 'train.csv')
+                if os.path.exists(default_path):
+                    st.session_state.df = pd.read_csv(default_path)
+                    st.session_state.curr_file = 'default_train'
+                    st.info("Loaded default dataset (`train.csv`)")
+            except Exception:
+                pass
                 
-    if 'split_info' in st.session_state:
-        st.success(f"Split complete! Train: {st.session_state.split_info['train_len']}, Valid: {st.session_state.split_info['valid_len']}, Test: {st.session_state.split_info['test_len']} rows.")
+    if 'df' in st.session_state:
+        df = st.session_state.df
+        st.write(f"**Data Preview ({df.shape[0]} rows, {df.shape[1]} columns):**")
+        st.dataframe(df.head())
+        
+        st.subheader("Data Alterations")
+        cols_to_drop = st.multiselect("Select columns to drop (optional)", df.columns)
+        
+        # Working copy
+        df_clean = df.drop(columns=cols_to_drop) if cols_to_drop else df
+        
+        if cols_to_drop:
+            st.write("Preview after dropping columns:")
+            st.dataframe(df_clean.head())
+
+with main_col2:
+    if 'df' in st.session_state:
+        st.header("Step 2: Configuration & Splitting")
+        
+        # Smart defaults for target selection
+        target_options = list(df_clean.columns)
+        default_target_idx = len(target_options) - 1 # default to last column usually
+        if 'target' in target_options:
+            default_target_idx = target_options.index('target')
+            
+        target_col = st.selectbox("Select Target Column", target_options, index=default_target_idx)
+        
+        # Smart default for task type
+        auto_task_idx = 0
+        if df_clean[target_col].dtype == 'object' or df_clean[target_col].nunique() < 20: 
+            auto_task_idx = 1 # classification
+
+        task_type = st.radio("Select Task Type", ["regression", "classification"], index=auto_task_idx, horizontal=True)
+
+        st.subheader("📊 Feature Significance")
+        try:
+            from sklearn.feature_selection import f_classif, f_regression
+            import numpy as np
+            
+            df_encoded = df_clean.copy()
+            for c in df_encoded.columns:
+                if df_encoded[c].dtype == 'object':
+                    df_encoded[c] = df_encoded[c].astype('category').cat.codes
+                    
+            X_sig = df_encoded.drop(columns=[target_col]).fillna(0)
+            y_sig = df_encoded[target_col].fillna(0)
+            
+            if task_type == 'classification':
+                F, pval = f_classif(X_sig, y_sig)
+            else:
+                F, pval = f_regression(X_sig, y_sig)
+                
+            sig_df = pd.DataFrame({
+                "Feature": X_sig.columns,
+                "F-Value": F,
+                "p-Value": pval
+            }).sort_values('F-Value', ascending=False)
+            
+            st.dataframe(sig_df.style.background_gradient(subset=['F-Value'], cmap='viridis'), height=200)
+        except Exception as e:
+            st.warning(f"Could not compute feature significance: {e}")
+
+        st.markdown("---")
+        
+        # Data Splitting options side-by-side
+        col3, col4 = st.columns(2)
+        with col3:
+            test_size = st.slider("Test Size Proportion", 0.05, 0.5, 0.2, 0.05)
+        with col4:
+            valid_size = st.slider("Validation Size Proportion", 0.05, 0.5, 0.2, 0.05)
+            
+        outputs_dir = os.path.join(os.path.dirname(__file__), 'temp_splits')
+        os.makedirs(outputs_dir, exist_ok=True)
+            
+        if st.button("GO: Compute Splits & Select Models", type="primary" if st.session_state.step <= 1 else "secondary", key="split_go"):
+            st.session_state.df_clean = df_clean
+            st.session_state.target_col = target_col
+            st.session_state.task_type = task_type
+            with st.spinner("Splitting data..."):
+                try:
+                    train_p, test_p, valid_p, train_l, test_l, valid_l = split_and_save(
+                        df_clean, target_col, test_size, valid_size, outputs_dir, task_type
+                    )
+                    st.session_state.data_files = {
+                        'train': train_p, 'test': test_p, 'valid': valid_p
+                    }
+                    st.session_state.split_info = {
+                        'train_len': train_l, 'test_len': test_l, 'valid_len': valid_l
+                    }
+                    st.session_state.step = max(st.session_state.step, 2)
+                    st.rerun()
+                except Exception as e:
+                    st.error(f"Error during splitting: {e}")
+                    
+        if 'split_info' in st.session_state:
+            st.success(f"Split complete! Train: {st.session_state.split_info['train_len']}, Valid: {st.session_state.split_info['valid_len']}, Test: {st.session_state.split_info['test_len']} rows.")
 
 # --- STEP 3: Configure Models ---
 if st.session_state.step >= 2:
