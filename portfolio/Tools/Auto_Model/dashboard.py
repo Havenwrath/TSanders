@@ -58,6 +58,7 @@ with main_col1:
                     st.session_state.df = pd.read_json(uploaded_file)
                 st.session_state.curr_file = uploaded_file.name
                 st.session_state.step = 0 # reset steps on new upload
+                st.session_state.data_accepted = False
             except Exception as e:
                 st.error(f"Error reading file: {e}")
     else:
@@ -68,6 +69,7 @@ with main_col1:
                 if os.path.exists(default_path):
                     st.session_state.df = pd.read_csv(default_path)
                     st.session_state.curr_file = 'default_train'
+                    st.session_state.data_accepted = False
                     st.info("Loaded default dataset (`train.csv`)")
             except Exception:
                 pass
@@ -86,6 +88,36 @@ with main_col1:
         if cols_to_drop:
             st.write("Preview after dropping columns:")
             st.dataframe(df_clean.head())
+            
+        st.markdown("---")
+        st.subheader("Data Quality Checks")
+        
+        # 1. Copies categorical data for display before encoded
+        cat_cols = df_clean.select_dtypes(include=['object', 'category']).columns
+        if len(cat_cols) > 0:
+            st.write(f"📌 **Raw Categorical Features ({len(cat_cols)}):**")
+            st.dataframe(df_clean[cat_cols].head())
+        else:
+            st.write("📌 **Raw Categorical Features:** None detected.")
+            
+        # 2. isna().sum() display
+        missing_vals = df_clean.isna().sum()
+        total_missing = missing_vals.sum()
+        if total_missing > 0:
+            st.warning(f"⚠️ **Total Missing Values:** {total_missing}")
+            st.dataframe(missing_vals[missing_vals > 0].rename("Missing Count"))
+        else:
+            st.success("✅ No Missing Values")
+            
+        if st.session_state.get('data_accepted'):
+            st.success("Data quality accepted! Proceed to configuration on the right.")
+            if st.button("Reset Quality Checks"):
+                st.session_state.data_accepted = False
+                st.rerun()
+        else:
+            if st.button("✅ Accept Data Quality", type="primary", key="accept_data"):
+                st.session_state.data_accepted = True
+                st.rerun()
 
 with main_col2:
     if 'df' in st.session_state:
@@ -136,38 +168,41 @@ with main_col2:
 
         st.markdown("---")
         
-        # Data Splitting options side-by-side
-        col3, col4 = st.columns(2)
-        with col3:
-            test_size = st.slider("Test Size Proportion", 0.05, 0.5, 0.2, 0.05)
-        with col4:
-            valid_size = st.slider("Validation Size Proportion", 0.05, 0.5, 0.2, 0.05)
-            
-        outputs_dir = os.path.join(os.path.dirname(__file__), 'temp_splits')
-        os.makedirs(outputs_dir, exist_ok=True)
-            
-        if st.button("GO: Compute Splits & Select Models", type="primary" if st.session_state.step <= 1 else "secondary", key="split_go"):
-            st.session_state.df_clean = df_clean
-            st.session_state.target_col = target_col
-            st.session_state.task_type = task_type
-            with st.spinner("Splitting data..."):
-                try:
-                    train_p, test_p, valid_p, train_l, test_l, valid_l = split_and_save(
-                        df_clean, target_col, test_size, valid_size, outputs_dir, task_type
-                    )
-                    st.session_state.data_files = {
-                        'train': train_p, 'test': test_p, 'valid': valid_p
-                    }
-                    st.session_state.split_info = {
-                        'train_len': train_l, 'test_len': test_l, 'valid_len': valid_l
-                    }
-                    st.session_state.step = max(st.session_state.step, 2)
-                    st.rerun()
-                except Exception as e:
-                    st.error(f"Error during splitting: {e}")
-                    
-        if 'split_info' in st.session_state:
-            st.success(f"Split complete! Train: {st.session_state.split_info['train_len']}, Valid: {st.session_state.split_info['valid_len']}, Test: {st.session_state.split_info['test_len']} rows.")
+        if not st.session_state.get('data_accepted'):
+            st.info("⚠️ Please review and **Accept Data Quality** on the left to unlock Data Splitting.")
+        else:
+            # Data Splitting options side-by-side
+            col3, col4 = st.columns(2)
+            with col3:
+                test_size = st.slider("Test Size Proportion", 0.05, 0.5, 0.2, 0.05)
+            with col4:
+                valid_size = st.slider("Validation Size Proportion", 0.05, 0.5, 0.2, 0.05)
+                
+            outputs_dir = os.path.join(os.path.dirname(__file__), 'temp_splits')
+            os.makedirs(outputs_dir, exist_ok=True)
+                
+            if st.button("GO: Compute Splits & Select Models", type="primary" if st.session_state.step <= 1 else "secondary", key="split_go"):
+                st.session_state.df_clean = df_clean
+                st.session_state.target_col = target_col
+                st.session_state.task_type = task_type
+                with st.spinner("Splitting data..."):
+                    try:
+                        train_p, test_p, valid_p, train_l, test_l, valid_l = split_and_save(
+                            df_clean, target_col, test_size, valid_size, outputs_dir, task_type
+                        )
+                        st.session_state.data_files = {
+                            'train': train_p, 'test': test_p, 'valid': valid_p
+                        }
+                        st.session_state.split_info = {
+                            'train_len': train_l, 'test_len': test_l, 'valid_len': valid_l
+                        }
+                        st.session_state.step = max(st.session_state.step, 2)
+                        st.rerun()
+                    except Exception as e:
+                        st.error(f"Error during splitting: {e}")
+                        
+            if 'split_info' in st.session_state:
+                st.success(f"Split complete! Train: {st.session_state.split_info['train_len']}, Valid: {st.session_state.split_info['valid_len']}, Test: {st.session_state.split_info['test_len']} rows.")
 
 # --- STEP 3: Configure Models ---
 if st.session_state.step >= 2:
