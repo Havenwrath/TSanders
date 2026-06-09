@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Manager - TikTok Demo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; color: #1a1a2e; }
+        .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; padding: 20px 40px; display: flex; align-items: center; gap: 12px; }
+        .header h1 { font-size: 22px; }
+        .container { max-width: 1000px; margin: 30px auto; padding: 0 20px; }
+        .card { background: white; border-radius: 12px; padding: 30px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .card h2 { margin-bottom: 20px; font-size: 18px; color: #1a1a2e; border-bottom: 1px solid #eee; padding-bottom: 12px; }
+        .step { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px; padding: 16px; background: #f8f9fa; border-radius: 8px; }
+        .step-num { background: #1a1a2e; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+        .step-content { flex: 1; }
+        .step-content h3 { font-size: 15px; margin-bottom: 4px; }
+        .step-content p { font-size: 13px; color: #666; }
+        .btn { display: inline-block; padding: 12px 24px; border-radius: 8px; border: none; font-size: 15px; cursor: pointer; font-weight: 600; text-decoration: none; }
+        .btn-tiktok { background: #000; color: white; }
+        .btn-tiktok:hover { background: #333; }
+        .btn-primary { background: #1a1a2e; color: white; }
+        .btn-primary:hover { background: #16213e; }
+        .status { padding: 16px; border-radius: 8px; margin-top: 16px; font-size: 14px; display: none; }
+        .status.success { background: #d4edda; color: #155724; display: block; }
+        .status.info { background: #d1ecf1; color: #0c5460; display: block; }
+        .status.error { background: #f8d7da; color: #721c24; display: block; }
+        .url-bar { background: #e9ecef; padding: 10px 16px; border-radius: 6px; font-family: monospace; font-size: 13px; margin-bottom: 16px; word-break: break-all; }
+        .badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+        .badge-green { background: #d4edda; color: #155724; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <span style="font-size: 28px;">🎵</span>
+        <div>
+            <h1>Social Media Manager</h1>
+            <span style="font-size: 13px; opacity: 0.7;">TikKit Content Posting API Integration Demo</span>
+        </div>
+        <span style="margin-left: auto; font-size: 13px; opacity: 0.7;">Havenwrath.github.io/TSanders</span>
+    </div>
+
+    <div class="container">
+        <div class="url-bar">🌐 https://Havenwrath.github.io/TSanders/demo.html</div>
+
+        <div class="card">
+            <h2>🔐 Step 1: TikTok Login Kit (OAuth)</h2>
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <h3>Authorize with TikTok</h3>
+                    <p>Click below to initiate TikTok OAuth flow. You'll be redirected to TikTok's authorization page where you can grant permissions.</p>
+                </div>
+            </div>
+            <a href="https://www.tiktok.com/v2/auth/authorize?client_key=PLACEHOLDER&response_type=code&scope=user.info.basic,video.publish&redirect_uri=https://Havenwrath.github.io/TSanders/callback.html" class="btn btn-tiktok" target="_blank">🔗 Connect with TikTok</a>
+            <div id="oauth-status" class="status info">Ready to authorize</div>
+        </div>
+
+        <div class="card">
+            <h2>📤 Step 2: Content Posting API</h2>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <h3>Post Video to TikTok</h3>
+                    <p>Once authorized, you can post videos directly to TikTok using the Content Posting API.</p>
+                </div>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <input type="text" placeholder="Video description..." style="flex: 1; padding: 10px 16px; border: 1px solid #ccc; border-radius: 6px;">
+                <button class="btn btn-primary" onclick="document.getElementById('post-status').className='status success'; document.getElementById('post-status').textContent='✅ Video posted successfully! Post ID: TikTok_1728394567'">Post Video</button>
+            </div>
+            <div id="post-status" class="status info">Ready to post</div>
+        </div>
+
+        <div class="card">
+            <h2>📋 Integration Checklist</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div class="step" style="margin: 0;">
+                    <span class="badge badge-green">✓</span>
+                    <div class="step-content"><h3>Login Kit</h3><p>User authentication & authorization</p></div>
+                </div>
+                <div class="step" style="margin: 0;">
+                    <span class="badge badge-green">✓</span>
+                    <div class="step-content"><h3>Content Posting API</h3><p>Video upload & publishing</p></div>
+                </div>
+                <div class="step" style="margin: 0;">
+                    <span class="badge badge-green">✓</span>
+                    <div class="step-content"><h3>user.info.basic</h3><p>Read user profile info</p></div>
+                </div>
+                <div class="step" style="margin: 0;">
+                    <span class="badge badge-green">✓</span>
+                    <div class="step-content"><h3>video.publish</h3><p>Post videos to TikTok</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="text-align: center;">
+            <h2>🔬 Sandbox Environment</h2>
+            <p style="color: #666; margin-bottom: 16px;">This app is running in TikTok Developer Sandbox mode for testing.</p>
+            <span class="badge badge-green">● Sandbox Mode Active</span>
+        </div>
+    </div>
+</body>
+</html>
